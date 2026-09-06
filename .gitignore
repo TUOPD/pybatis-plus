@@ -1,0 +1,34 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ===== 虚拟环境 =====
+venv/
+.venv/
+env/
+
+# ===== 环境变量（含数据库密码等密钥，禁止提交）=====
+.env
+.env.*
+!.env.example
+
+# ===== IDE / 编辑器 =====
+.idea/
+.vscode/
+*.iml
+
+# ===== 测试 / 缓存 / 覆盖率 =====
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ===== 其它 =====
+*.log
+.DS_Store
+Thumbs.db
