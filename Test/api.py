@@ -124,6 +124,20 @@ class UserSearch(Resource):
         return _ok(mapper.select_by_username_like(username=username))
 
 
+@user_ns.route("/dynamic-demo")
+class UserDynamicDemo(Resource):
+    def get(self):
+        """动态 SQL 演示（<if>/<foreach>）：
+        例: /api/users/dynamic-demo?keyword=zhang&min_id=1&id=1&id=3
+        """
+        keyword = request.args.get("keyword") or None
+        min_id = request.args.get("min_id", type=int) or 0
+        ids = request.args.getlist("id", type=int) or None
+        rows = mapper.select_dynamic(keyword=keyword, min_id=min_id, ids=ids)
+        return _ok({"query": {"keyword": keyword, "min_id": min_id, "ids": ids},
+                    "rows": rows})
+
+
 @user_ns.route("/query-demo")
 class UserQueryDemo(Resource):
     def get(self):

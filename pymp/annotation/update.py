@@ -3,9 +3,8 @@ import functools
 import re
 from typing import Callable
 
-from pymp.annotation.execute import get_executor_for_instance
+from pymp.annotation.execute import get_executor_for_instance, render_annotation_sql as render_sql
 from pymp.core.exceptions import SqlExecutionError
-from pymp.sql.renderer import render_sql
 from pymp.utils.reflect import merge_func_result  # ✅
 
 _WHERE_RE = re.compile(r"\bwhere\b", re.IGNORECASE)

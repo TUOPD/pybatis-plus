@@ -9,7 +9,7 @@
 import functools
 from typing import Callable, Optional, Type, TypeVar
 
-from .execute import render_sql, get_executor_for_instance
+from .execute import get_executor_for_instance, render_annotation_sql as render_sql
 from ..utils.reflect import merge_func_result
 
 T = TypeVar("T")

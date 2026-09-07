@@ -73,6 +73,32 @@ class userMapper(BaseMapper):
         """@delete：注册 LogicDelete 插件后，物理 DELETE 会被改写为软删除 UPDATE"""
         pass
 
+    # ---------------- 动态 SQL 演示（<if> / <foreach> 自动识别） ----------------
+    @select(
+        """
+        SELECT * FROM user
+        WHERE 1 = 1
+        <if test="keyword != None and keyword != ''">
+            AND (username LIKE #{keyword} OR email LIKE #{keyword})
+        </if>
+        <if test="min_id > 0"> AND id > #{min_id}</if>
+        <foreach collection="ids" item="id"
+                 open=" AND id IN (" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY id DESC
+        """,
+        one=False,
+    )
+    def select_dynamic(
+        self,
+        keyword: Optional[str] = None,
+        min_id: int = 0,
+        ids: Optional[List[int]] = None,
+    ) -> List[dict]:
+        """动态 SQL：keyword / min_id / ids 都可选，模板里 <if>/<foreach> 自动拼接"""
+        pass
+
     # ------------------------------------------------------------------
     # 3) QueryWrapper 便捷封装
     # ------------------------------------------------------------------

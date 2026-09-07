@@ -7,8 +7,7 @@
 import functools
 from typing import Callable
 
-from .execute import get_executor_for_instance
-from ..sql.renderer import render_sql
+from .execute import get_executor_for_instance, render_annotation_sql as render_sql
 from ..utils.reflect import merge_func_result
 
 
